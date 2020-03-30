@@ -44,6 +44,10 @@ function getParameter(name) {
 	return JSON.parse(match[2])[name];
 }
 
+function getKeyboardLayout() {
+	return navigator.language.split('-')[1].toLowerCase()
+}
+
 wdi.Debug.debug = false; //enable logging to javascript console
 wdi.exceptionHandling = false; //disable "global try catch" to improve debugging
 //if enabled, console errors do not include line numbers
@@ -231,7 +235,7 @@ function start () {
         'heartbeatToken': 'heartbeat',
 		'heartbeatTimeout': 4000,//miliseconds
 		'busFileServerBaseUrl': 'https://10.11.12.200/fileserver/',
-		'layout': 'es',
+		'layout': getKeyboardLayout() || 'es',
 		'clientOffset': {
 			'x': 0,
 			'y': 0
