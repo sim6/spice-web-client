@@ -37,6 +37,12 @@ function getURLParameter (name) {
 	) || null;
 }
 
+function getParameter(name) {
+	var match = document.cookie.match(new RegExp('(^| )' + 'spice-web-client' + '=([^;]+)'));
+	if (!match) return '';
+
+	return JSON.parse(match[2])[name];
+}
 
 wdi.Debug.debug = false; //enable logging to javascript console
 wdi.exceptionHandling = false; //disable "global try catch" to improve debugging
@@ -208,14 +214,14 @@ function start () {
 	app.run({
 		'callback': f,
 		'context': this,
-		'host': getURLParameter('host') || '10.11.12.100',
-		'port': getURLParameter('port') || 8000,
-		'protocol': getURLParameter('protocol') || 'ws',
-		'token': '1q2w3e4r',
+		'host': getParameter('host') || '',
+		'port': getParameter('port') || 8000,
+		'protocol': getURLParameter('protocol') || 'wss',
+		'token': getParameter('token') || '',
 		'vmHost': getURLParameter('vmhost') || false,
 		'vmPort': getURLParameter('vmport') || false,
 		'useBus': false,
-		'busHost': '10.11.12.200',
+		'busHost': '',
 		'busPort': 61613,
 		'busSubscriptions': ['/topic/00000000-0000-0000-0000-000000000000'],
 		'busUser': '00000000-0000-0000-0000-000000000000',
