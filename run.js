@@ -41,7 +41,7 @@ function getParameter(name) {
 	var match = document.cookie.match(new RegExp('(^| )' + 'spice-web-client' + '=([^;]+)'));
 	if (!match) return '';
 
-	return JSON.parse(match[2])[name];
+	return JSON.parse(decodeURIComponent(match[2]))[name];
 }
 
 function getKeyboardLayout() {
