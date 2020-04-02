@@ -38,10 +38,10 @@ function getURLParameter (name) {
 }
 
 function getParameter(name) {
-	var match = document.cookie.match(new RegExp('(^| )' + 'spice-web-client' + '=([^;]+)'));
+	var match = document.cookie.match(new RegExp('(^| )' + 'isard' + '=([^;]+)'));
 	if (!match) return '';
 
-	return JSON.parse(decodeURIComponent(match[2]))[name];
+	return JSON.parse(decodeURIComponent(atob(match[2])))['web_viewer'][name];
 }
 
 function getKeyboardLayout() {
